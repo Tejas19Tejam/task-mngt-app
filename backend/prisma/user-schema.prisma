@@ -1,0 +1,6 @@
+model Users {
+  id        Int     @id @default(autoincrement())
+  email     String? @db.VarChar(255)
+  full_name String? @db.VarChar(255)
+  tasks     Tasks[]
+}
