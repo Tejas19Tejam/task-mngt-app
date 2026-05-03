@@ -21,17 +21,6 @@ npm run dev
 
 The backend starts at **http://localhost:4000**
 
-### Environment Variables
-
-Create a `backend/.env` file (copy from `.env.example`):
-
-```env
-DATABASE_URL=postgresql://neondb_owner:npg_xzbV5H1rZJID@ep-misty-brook-a1bo3lnp-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
-PORT=4000
-```
-
-> The `.env.example` file already contains the provided connection string — just copy it.
-
 ## Running the Frontend
 
 ```bash
@@ -42,7 +31,7 @@ npm run dev
 
 The frontend starts at **http://localhost:5173**
 
-### Environment Variables (optional)
+### Environment Variables(Optional)
 
 The frontend defaults to `http://localhost:4000/api`. To override, create a `frontend/.env`:
 
@@ -100,23 +89,9 @@ VITE_API_URL=http://localhost:4000/api
 The backend `tsconfig.json` defines an `@/` alias mapped to `src/`. All internal imports use this alias instead of relative paths:
 
 ```ts
-// Before
-import * as taskService from "../services/taskService";
-import { HttpError } from "../middleware/errorHandler";
-
-// After
 import * as taskService from "@/services/taskService";
 import { HttpError } from "@/middleware/errorHandler";
 ```
-
-Files updated to use `@/` aliases:
-
-| File                                | Imports changed                                                                        |
-| ----------------------------------- | -------------------------------------------------------------------------------------- |
-| `src/controllers/taskController.ts` | `@/services/taskService`, `@/middleware/errorHandler`, `@/config/constants`, `@/types` |
-| `src/services/taskService.ts`       | `@/lib/prisma`, `@/types`, `@/middleware/errorHandler`                                 |
-| `src/routes/tasks.ts`               | `@/controllers/taskController`                                                         |
-| `src/app.ts`                        | `@/routes`, `@/middleware/errorHandler`                                                |
 
 ### Frontend
 
@@ -124,3 +99,4 @@ Files updated to use `@/` aliases:
 - `src/hooks/` — Custom React hooks (`useTasks`, `useDebounce`)
 - `src/services/api.ts` — Typed API client
 - `src/types/index.ts` — Shared TypeScript types
+- `src/features/*` - Feature specific files
